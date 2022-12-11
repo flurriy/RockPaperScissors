@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styling.css">
+
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+   <div id="app">
+        <div class="summary">
+        <h1 class="title">MATCH RESULTS</h1>
+        <h1 class="result"></h1>
+    </div>
+    <div class="games">
+        <div class="option" onclick="pickOption('🖐️')">🖐️</div>
+        <div class="option" onclick="pickOption('✌️')">✌️</div>
+        <div class="option" onclick="pickOption('✊')">✊</div>
+            
+        </div>
+   </div> 
+
+<script>
+    class Start{
+        constructor(){
+            this.playerName = "you"
+            this.botName = "Billy"
+            this.playerOption;
+            this.botOption;
+            this.winner = ""
+        }
+
+        set playerOption (option) {
+            this.playerOption = option;
+        }
+
+        get getBotOption() {
+            return this.botOption;
+        } 
+
+        set setBotOption(option) {
+            this.botOption = option;
+        } 
+
+        get getPlayerOption () {
+            return this.playerOption
+        }
+
+        set setPlayerOption (option) {
+            this.playerOption = option;
+        }
+
+        botBrain() {
+            const option = ["🖐️", "✌️", "✊"];
+            const bot = Math.floor([Math.random() * option.length]);
+            console.log("bot picks: ", bot)
+        }
+
+    }
+
+    function pickOption(params) {
+        const start = new Start();
+        start.setPlayerOption = params;
+        start.botBrain();
+    }
+</script>
+
+<style>
+    @font-face {
+font-family: "Poppins";
+src: url(Poppins-Medium.ttf);
+}
+
+:root {
+box-sizing: border-box;
+}
+
+html,
+body,
+* {
+margin-top: 10px;
+padding: 0;
+font-family:"Poppins", sans-serif;
+}
+
+body::-webkit-scrollbar {
+display: none;
+}
+
+#app {
+height: 100vh;
+}
+
+.summary {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+margin: 0 auto;
+border: 2px solid rgb(63, 8, 38);
+background-color: blanchedalmond;
+border-radius: 8px;
+width: 400px;
+height: 400px;
+text-align: center;
+font-family:"Poppins", sans-serif;
+}
+
+.games {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.option {
+width: 30%;
+margin: 10px 15px;
+padding: 25px;
+text-align: center;
+font-size: 40px;
+background-color: bisque;
+border-radius: 8px;
+border: 1px solid #5d0715;
+}
+
+.option:hover {
+cursor: pointer;
+background-color: burlywood;
+transition: cubic-bezier(0.215, 0.61, 0.355, 1) ease-in-out;
+transform: scale(105%);
+-webkit-transform: scale(105%);
+-moz-transform: scale(105%);
+-ms-transform: scale(105%);
+-o-transform: scale(105%);
+-webkit-transition: cubic-bezier(0.215, 0.61, 0.355, 1) ease-in-out;
+-moz-transition: cubic-bezier(0.215, 0.61, 0.355, 1) ease-in-out;
+-ms-transition: cubic-bezier(0.215, 0.61, 0.355, 1) ease-in-out;
+-o-transition: cubic-bezier(0.215, 0.61, 0.355, 1) ease-in-out;
+}
+
+</style>
+
+</body>
+</html>
