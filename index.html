@@ -23,49 +23,83 @@
    </div> 
 
 <script>
-    class Start{
-        constructor(){
-            this.playerName = "you"
-            this.botName = "Billy"
-            this.playerOption;
-            this.botOption;
-            this.winner = ""
+        class Start {
+            constructor() {
+                this.playerName = "YOU"
+                this.botName = "Billy"
+                this.playerOption;
+                this.botOption;
+                this.winner = ""
+            }
+
+            get getBotOption() {
+                return this.botOption;
+            }
+
+            set setBotOption(option) {
+                this.botOption = option;
+            }
+
+            get getPlayerOption() {
+                return this.playerOption
+            }
+
+            set setPlayerOption(option) {
+                this.playerOption = option;
+            }
+
+            botBrain() {
+                const option = ["🖐", "✌", "✊"];
+                const bot = option[Math.floor(Math.random() * option.length)];
+                return bot;
+            }
+
+            winCalculation() {
+                if (this.botOption == "🖐" && this.playerOption == "✌") {
+                    return this.winner = this.playerName
+                } else if (this.botOption == "🖐" && this.playerOption == "✊") {
+                    return this.winner = this.botName;
+                } else if (this.botOption == "✌" && this.playerOption == "🖐") {
+                    return this.winner = this.botName;
+                } else if (this.botOption == "✌" && this.playerOption == "✊") {
+                    return this.winner = this.playerName
+                } else if (this.botOption == "✊" && this.playerOption == "🖐") {
+                    return this.winner = this.playerName
+                } else if (this.botOption == "✊" && this.playerOption == "✌") {
+                    return this.winner = this.botName;
+                } else {
+                    return this.winner = "DRAW"
+                }
+            }
+
+            matchResult() {
+                if (this.winner != "DRAW") {
+                    return `${this.winner} WIN(S)! `;
+                } else {
+                    return `IT'S A DRAW 😅`;
+                }
+            }
         }
 
-        set playerOption (option) {
-            this.playerOption = option;
+        function pickOption(params) {
+            const start = new Start();
+            start.setPlayerOption = params;
+            start.setBotOption = start.botBrain();
+            start.winCalculation();
+
+            const inGame = document.getElementById("inGame");
+            const result = document.getElementById("result");
+
+            inGame.textContent = "..."
+            result.textContent = "..."
+
+            setTimeout(() => {
+                inGame.textContent = `${start.getPlayerOption} VS ${start.getBotOption}`
+                result.textContent = start.matchResult();
+            }, 1500);
+
         }
-
-        get getBotOption() {
-            return this.botOption;
-        } 
-
-        set setBotOption(option) {
-            this.botOption = option;
-        } 
-
-        get getPlayerOption () {
-            return this.playerOption
-        }
-
-        set setPlayerOption (option) {
-            this.playerOption = option;
-        }
-
-        botBrain() {
-            const option = ["🖐️", "✌️", "✊"];
-            const bot = Math.floor([Math.random() * option.length]);
-            console.log("bot picks: ", bot)
-        }
-
-    }
-
-    function pickOption(params) {
-        const start = new Start();
-        start.setPlayerOption = params;
-        start.botBrain();
-    }
-</script>
+    </script>
 
 <style>
     @font-face {
